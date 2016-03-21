@@ -234,9 +234,26 @@ class CalendarGenerator {
 				}
 				
 				$out .= ($is_current_month == TRUE AND $day == $cur_day) ? $this->temp['cal_cell_end_today'] : $this->temp['cal_cell_end'];
+				
+				// replace pseudo variables day, month, year with their value for the day processed
+				$out = str_replace('{day}', $day_print, $out);
+				if($day < 1)
+				{
+					$out = str_replace('{month}', $previous_month, $out);	
+					$out = str_replace('{year}', $previous_year, $out);
+				}
+				elseif($day > $total_days)
+				{
+					$next_date = $this->adjust_date(($month+1), $year);
+					$out = str_replace('{month}', $next_date['month'], $out);	
+					$out = str_replace('{year}', $next_date['year'], $out);
+				}
+				else {
+					$out = str_replace('{month}', $month, $out);	
+					$out = str_replace('{year}', $year, $out);	
+				}
 				$day++;
 			}
-
 
 			$out .= $this->temp['cal_row_end'];
 
