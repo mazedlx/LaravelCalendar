@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/mazedlx/LaravelCalendar.svg?branch=master)](https://travis-ci.org/mazedlx/LaravelCalendar)
 ## Installation
 
 Install the package through [Composer](http://getcomposer.org/). Edit your project's `composer.json` file by adding:
